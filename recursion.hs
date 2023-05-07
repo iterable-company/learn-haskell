@@ -66,3 +66,22 @@ chain' 1 = [1]
 chain' n
     | even n = n : chain' (n `div` 2)
     | odd n = n : chain' (n * 3 + 1)
+
+sum' :: (Num a) => [a] -> a
+sum' (x:xs) = foldl(\acc x -> acc + x) 0 xs
+
+elem' :: (Eq a) => a -> [a] -> Bool
+elem' p = foldr (\x acc -> x == p || acc) False 
+
+reverse' :: [a] -> [a]
+reverse' = foldl (\acc x -> x:acc) []
+
+product' :: (Num a) => [a] -> a
+product' = foldl (*) 1 
+
+filter'' :: (Eq a) => (a -> Bool) -> [a] -> [a]
+filter'' f = foldr (\x acc -> if f x then x:acc else acc) []
+
+and' :: [Bool] -> Bool
+and' = foldr (\acc x -> acc && x) True
+
